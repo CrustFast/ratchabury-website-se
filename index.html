@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'custom-pink': '#FB91A7',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.9.6/dist/cdn.min.js" defer></script>
+
+  <title>Ratchaburi Team Profile</title>
+</head>
+<body>
+  <div class="bg-white" x-data="translationSwitcher()">
+    <header class="absolute inset-x-0 top-0 z-50">
+      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+          <a href="#" class="-m-1.5 p-1.5">
+            <span class="sr-only">Your Company</span>
+            <h2 class="text-gray-800 text-xl font-bold">
+              RATCHABURI TEAM
+            </h2>
+          </a>
+        </div>
+        <div class="flex lg:hidden">
+          <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+          <a href="#" class="relative group text-sm font-semibold leading-6 text-gray-900 hover:text-gray-400 transition-all duration-300">
+            <span x-text="translations[selected].profile"></span>
+            <span class="block h-1 w-0 bg-custom-pink rounded-full mt-1 mx-auto transition-all duration-300 group-hover:w-10"></span>
+          </a>
+          <a href="#" class="relative group text-sm font-semibold leading-6 text-gray-900 hover:text-gray-400 transition-all duration-300">
+            <span x-text="translations[selected].storytelling"></span>
+            <span class="block h-1 w-0 bg-custom-pink rounded-full mt-1 mx-auto transition-all duration-300 group-hover:w-10"></span>
+          </a>
+          <a href="#" class="relative group text-sm font-semibold leading-6 text-gray-900 hover:text-gray-400 transition-all duration-300">
+            <span x-text="translations[selected].rupiah"></span>
+            <span class="block h-1 w-0 bg-custom-pink rounded-full mt-1 mx-auto transition-all duration-300 group-hover:w-10"></span>
+          </a>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div class="relative" x-data="{ menuToggle: false }">
+            <button class="bg-white text-gray-500 rounded shadow-lg py-2 pr-3 pl-5 focus:outline-none" @click.prevent="menuToggle = !menuToggle">
+              <span class="flag-icon" :class="`flag-icon-${countries[selected].flag}`"></span> <i class="mdi mdi-chevron-down"></i>
+            </button>
+            <div class="bg-white text-gray-700 shadow-md rounded text-sm absolute mt-12 top-0 right-0 min-w-full w-48 z-30" x-show="menuToggle" x-transition:enter="transition ease duration-300 transform" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease duration-300 transform" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4">
+              <span class="absolute top-0 right-0 w-3 h-3 bg-white transform rotate-45 -mt-1 mr-3"></span> 
+              <div class="bg-white overflow-auto rounded w-full relative z-10">
+                <ul class="list-reset">
+                  <template x-for="(item, index) in countries" :key="index">
+                    <li>
+                      <a href="#" class="px-4 py-2 flex hover:bg-gray-100 no-underline hover:no-underline transition-colors duration-100" @click.prevent="menuToggle=false; selected=index;">
+                        <span class="inline-block mr-2 flag-icon" :class="'flag-icon-'+item.flag"></span>
+                        <span class="inline-block" x-text="item.label"></span>
+                        <template x-if="index==selected">
+                          <span class="ml-auto">
+                            <i class="mdi mdi-check"></i>
+                          </span>
+                        </template>
+                      </a>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="relative isolate px-6 pt-14 lg:px-8">
+      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+      <div class="mx-auto max-w-2xl py-16 sm:py-48 lg:py-56">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl" x-text="translations[selected].header"></h1>
+          <p class="mt-6 text-lg leading-8 text-gray-600" x-text="translations[selected].subheader"></p>
+          <a href="#teams" class="mt-9 pr-6 inline-flex items-center rounded-3xl border border-custom-pink px-3.5 py-2.5 text-sm font-semibold text-custom-pink shadow-sm hover:bg-custom-pink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mx-2 h-6 w-5">
+              <path fill-rule="evenodd" d="M11.47 13.28a.75.75 0 0 0 1.06 0l7.5-7.5a.75.75 0 0 0-1.06-1.06L12 11.69 5.03 4.72a.75.75 0 0 0-1.06 1.06l7.5 7.5Z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M11.47 19.28a.75.75 0 0 0 1.06 0l7.5-7.5a.75.75 0 1 0-1.06-1.06L12 17.69l-6.97-6.97a.75.75 0 0 0-1.06 1.06l7.5 7.5Z" clip-rule="evenodd" />
+            </svg>
+            <span x-text="translations[selected].start"></span>
+          </a>
+        </div>
+      </div>
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+    </div>
+  </div>  
+
+  <section id="teams">
+    <div class="max-w-[85rem] px-6 py-4 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <!-- Title -->
+      <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+        <h2 class="text-4xl font-bold tracking-tight text-gray-900" x-text="translations[selected].our_team"></h2>
+      </div>
+      <!-- End Title -->
+    
+      <!-- Grid -->
+      <div class="flex items-center justify-center min-h-screen">
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-8 md:gap-24">
+          <!-- Raihanah's Profile Card -->
+          <a href="src/hana-profile.html" class="text-left flex flex-col items-center bg-white p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-custom-pink hover:text-white relative">
+            <div class="relative w-48 h-48">
+              <img class="rounded-xl absolute top-4 w-full h-full object-cover mx-auto" src="src/img/FOTO PROFIL RAIHANAH AZIZAH ANWAR 2.jpg" alt="Raihanah Azizah Anwar">
+            </div>
+            <div class="mt-20 sm:mt-24 text-left w-full">
+              <h3 class="text-xl font-medium tracking-tight group-hover:text-white">Raihanah Azizah Anwar</h3>
+              <div class="flex items-center justify-start space-x-2 mt-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 group-hover:text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                </svg>
+                <p class="text-xs sm:text-sm lg:text-xs group-hover:text-white text-gray-600" x-text="translations[selected].school_raihanah">
+                  SMK PGRI 13 Surabaya
+                </p>
+              </div>
+              <div class="flex items-center justify-start space-x-2 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 group-hover:text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+                <p class="text-xs sm:text-sm lg:text-xs group-hover:text-white text-gray-600" x-text="translations[selected].major_raihanah">
+                  Visual Communication Design
+                </p>
+              </div>
+            </div>
+          </a>
+          <!-- End Raihanah's Profile Card -->
+      
+          <!-- Talita's Profile Card -->
+          <a href="src/talita-profile.html" class="text-left flex flex-col items-center bg-white p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-custom-pink hover:text-white relative">
+            <div class="relative w-48 h-48">
+              <img class="rounded-xl absolute top-4 w-full h-full object-cover mx-auto" src="src/img/foto talita.jpg" alt="Talita Purnama Dewi">
+            </div>
+            <div class="mt-20 sm:mt-24 text-left w-full">
+              <h3 class="text-xl font-medium tracking-tight group-hover:text-white">Talita Purnama Dewi</h3>
+              <div class="flex items-center justify-start space-x-2 mt-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 group-hover:text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                </svg>
+                <p class="text-xs sm:text-sm lg:text-xs group-hover:text-white text-gray-600" x-text="translations[selected].school_talita">
+                  SMK PGRI Telagasari
+                </p>
+              </div>
+              <div class="flex items-center justify-start space-x-2 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 group-hover:text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                </svg>
+                <p class="text-xs sm:text-sm lg:text-xs group-hover:text-white text-gray-600" x-text="translations[selected].major_talita">
+                  Teknik Mesin
+                </p>
+              </div>
+            </div>
+          </a>
+          <!-- End Talita's Profile Card -->
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script>
+  function translationSwitcher() {
+    return {
+      selected: 0,
+      translations: [
+        {
+          profile: "Profile",
+          storytelling: "Storytelling",
+          rupiah: "First Rupiah",
+          header: "Ratchaburi Team Profile",
+          subheader: "Get to know our passionate and creative team.",
+          start: "Mulai",
+          our_team: "Our Team",
+          school_raihanah: "SMK PGRI 13 Surabaya",
+          major_raihanah: "Visual Communication Design",
+          school_talita: "SMK PGRI Telagasari",
+          major_talita: "Mechanical Engineering",
+        },
+        {
+          profile: "Profil",
+          storytelling: "Bercerita",
+          rupiah: "Rupiah Pertama",
+          header: "Profil Tim Ratchaburi",
+          subheader: "Mengenal Lebih Dekat dengan Tim Kami yang Penuh Semangat dan Kreativitas.",
+          start: "Mulai",
+          our_team: "Tim Kami",
+          school_raihanah: "SMK PGRI 13 Surabaya",
+          major_raihanah: "Desain Komunikasi Visual",
+          school_talita: "SMK PGRI Telagasari",
+          major_talita: "Teknik Mesin",
+        },
+        {
+          profile: "โปรไฟล์",
+          storytelling: "การเล่าเรื่อง",
+          rupiah: "รูเปียห์แรก",
+          header: "โปรไฟล์ทีมราชบุรี",
+          subheader: "ทำความรู้จักกับทีมของเราที่เต็มไปด้วยความกระตือรือร้นและความคิดสร้างสรรค์",
+          start: "เริ่ม",
+          our_team: "ทีมของเรา",
+          school_raihanah: "โรงเรียน SMK PGRI 13 สุราบายา",
+          major_raihanah: "ออกแบบสื่อสาร",
+          school_talita: "โรงเรียน SMK PGRI เทลากาซารี",
+          major_talita: "วิศวกรรมเครื่องกล",
+        },
+      ],
+      countries: [
+        { label: 'English', lang: 'en', flag: 'gb' },
+        { label: 'Indonesia', lang: 'id', flag: 'id' },
+        { label: 'Thailand', lang: 'th', flag: 'th' },
+      ],
+    }
+  }
+  </script>
+</body>
+</html>
